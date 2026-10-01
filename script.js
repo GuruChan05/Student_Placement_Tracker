@@ -1,6 +1,4 @@
-// ===============================
-// GET HTML ELEMENTS
-// ===============================
+
 
 const studentForm =
     document.getElementById("studentForm");
@@ -45,29 +43,19 @@ const cancelEditButton =
     document.getElementById("cancelEditButton");
 
 
-// ===============================
-// LOAD STUDENTS
-// ===============================
-
 let students =
     JSON.parse(
         localStorage.getItem("students")
     ) || [];
 
 
-// Student currently being edited
 
 let editingStudentId = null;
 
 
-// Display students when page opens
-
 displayStudents();
 
 
-// ===============================
-// ADD / EDIT STUDENT
-// ===============================
 
 studentForm.addEventListener(
     "submit",
@@ -76,7 +64,6 @@ studentForm.addEventListener(
         event.preventDefault();
 
 
-        // Get values
 
         const name =
             document
@@ -108,10 +95,6 @@ studentForm.addEventListener(
                 .getElementById("status")
                 .value;
 
-
-        // ===============================
-        // VALIDATION
-        // ===============================
 
         if (name === "") {
 
@@ -149,10 +132,6 @@ studentForm.addEventListener(
             }
         }
 
-
-        // ===============================
-        // EDIT EXISTING STUDENT
-        // ===============================
 
         if (editingStudentId !== null) {
 
@@ -203,9 +182,6 @@ studentForm.addEventListener(
 
         }
 
-        // ===============================
-        // ADD NEW STUDENT
-        // ===============================
 
         else {
 
@@ -262,21 +238,16 @@ function saveStudents() {
 }
 
 
-// ===============================
-// DISPLAY STUDENTS
-// ===============================
 
 function displayStudents() {
 
     studentList.innerHTML = "";
 
 
-    // Update statistics
 
     updateStatistics();
 
 
-    // Search text
 
     const searchText =
         searchInput.value
@@ -284,15 +255,12 @@ function displayStudents() {
             .trim();
 
 
-    // Selected filter
+  
 
     const selectedStatus =
         filterStatus.value;
 
 
-    // ===============================
-    // FILTER
-    // ===============================
 
     let filteredStudents =
         students.filter(
@@ -335,9 +303,6 @@ function displayStudents() {
         );
 
 
-    // ===============================
-    // SORT
-    // ===============================
 
     const selectedSort =
         sortOption.value;
@@ -383,9 +348,6 @@ function displayStudents() {
     }
 
 
-    // ===============================
-    // NO RESULTS
-    // ===============================
 
     if (filteredStudents.length === 0) {
 
@@ -397,11 +359,6 @@ function displayStudents() {
 
         return;
     }
-
-
-    // ===============================
-    // DISPLAY
-    // ===============================
 
     filteredStudents.forEach(
         function(student) {
@@ -472,21 +429,14 @@ function displayStudents() {
 }
 
 
-// ===============================
-// UPDATE STATISTICS
-// ===============================
 
 function updateStatistics() {
 
-    // Total
+
 
     totalStudents.textContent =
         students.length;
 
-
-    // ===============================
-    // FILTER
-    // ===============================
 
     const placed =
         students.filter(
@@ -515,9 +465,6 @@ function updateStatistics() {
         notPlaced.length;
 
 
-    // ===============================
-    // REDUCE
-    // ===============================
 
     const totalPackage =
         placed.reduce(
@@ -531,9 +478,6 @@ function updateStatistics() {
         );
 
 
-    // ===============================
-    // AVERAGE PACKAGE
-    // ===============================
 
     let average = 0;
 
@@ -550,9 +494,6 @@ function updateStatistics() {
         average.toFixed(2) + " LPA";
 
 
-    // ===============================
-    // HIGHEST PACKAGE
-    // ===============================
 
     let highest = 0;
 
@@ -575,9 +516,6 @@ function updateStatistics() {
         highest + " LPA";
 
 
-    // ===============================
-    // PLACEMENT PERCENTAGE
-    // ===============================
 
     let percentage = 0;
 
@@ -595,9 +533,6 @@ function updateStatistics() {
 }
 
 
-// ===============================
-// EDIT STUDENT
-// ===============================
 
 function editStudent(id) {
 
@@ -616,7 +551,6 @@ function editStudent(id) {
     }
 
 
-    // Put existing values into form
 
     document.getElementById(
         "studentName"
@@ -669,10 +603,6 @@ function editStudent(id) {
 }
 
 
-// ===============================
-// CANCEL EDIT
-// ===============================
-
 cancelEditButton.addEventListener(
     "click",
     function() {
@@ -690,9 +620,7 @@ cancelEditButton.addEventListener(
 );
 
 
-// ===============================
-// DELETE STUDENT
-// ===============================
+
 
 function deleteStudent(id) {
 
@@ -723,10 +651,6 @@ function deleteStudent(id) {
 }
 
 
-// ===============================
-// SEARCH
-// ===============================
-
 searchInput.addEventListener(
     "input",
     function() {
@@ -736,9 +660,6 @@ searchInput.addEventListener(
 );
 
 
-// ===============================
-// FILTER
-// ===============================
 
 filterStatus.addEventListener(
     "change",
@@ -749,10 +670,6 @@ filterStatus.addEventListener(
 );
 
 
-// ===============================
-// SORT
-// ===============================
-
 sortOption.addEventListener(
     "change",
     function() {
@@ -762,9 +679,6 @@ sortOption.addEventListener(
 );
 
 
-// ===============================
-// CLEAR ALL
-// ===============================
 
 clearButton.addEventListener(
     "click",
